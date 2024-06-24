@@ -1,7 +1,6 @@
 # secrets management via .env (excluded via .gitignore)
 dotenv: .env
-# wallets:
-#   from_key: ${PRIVATE_KEY}
+
 networks:
   default: development
   development:
@@ -11,19 +10,6 @@ networks:
       # without this explicit setting chainid==1 is returend by block.chainid
       accounts: 20
       chain_id: 1337
-      # chain_id: 11155111
-      # unlock:
-      #   - 0x1591Dd29f3E34dD0435f2Fb6A3507305622DC238
-      #   - 0x781F1F628Ee7bbc56dDC1B2C915aE4B15e33f8Ef
-      #   - 0x4B093A12718dA66D1Dcf3c2d9F02E8af5c5cE307
-      #   - 0x268c07511C4C4Fd3920ab8B6a2f7832C4DfFa34A
-      #   - 0x867D43174E989A2339Ba16888Bb8B7D6273EAf57
-      #   - 0x86A595E93E10C0C966B6Cbfdc591311F6aAC70C2
-      #   - 0xf389464A39eCeA1A9f38574D7BFBab60eF7f17b6
-      #   - 0xb9897edd0Dab3A5BFfC64530D94c6E779FADFa55
-      #   - 0x45171e7bf2052b6C0e6A46e34Db65a6aA3b1cc5e
-      #   - 0x928CE4Be934A9324Dd653b2d1514f0F5fA5e31f6
-      #   - 0x45360d0C789Abac5B8C72B1558f5436E4C034E05
 
 # brownie default values made explicit
 dev_deployment_artifacts: true
