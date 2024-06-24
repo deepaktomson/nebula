@@ -1,0 +1,74 @@
+# secrets management via .env (excluded via .gitignore)
+dotenv: .env
+# wallets:
+#   from_key: ${PRIVATE_KEY}
+networks:
+  default: development
+  development:
+    # gas_limit: 40000000
+    gas_price: 1 # (1 wei)
+    cmd_settings:
+      # without this explicit setting chainid==1 is returend by block.chainid
+      accounts: 20
+      chain_id: 1337
+      # chain_id: 11155111
+      # unlock:
+      #   - 0x1591Dd29f3E34dD0435f2Fb6A3507305622DC238
+      #   - 0x781F1F628Ee7bbc56dDC1B2C915aE4B15e33f8Ef
+      #   - 0x4B093A12718dA66D1Dcf3c2d9F02E8af5c5cE307
+      #   - 0x268c07511C4C4Fd3920ab8B6a2f7832C4DfFa34A
+      #   - 0x867D43174E989A2339Ba16888Bb8B7D6273EAf57
+      #   - 0x86A595E93E10C0C966B6Cbfdc591311F6aAC70C2
+      #   - 0xf389464A39eCeA1A9f38574D7BFBab60eF7f17b6
+      #   - 0xb9897edd0Dab3A5BFfC64530D94c6E779FADFa55
+      #   - 0x45171e7bf2052b6C0e6A46e34Db65a6aA3b1cc5e
+      #   - 0x928CE4Be934A9324Dd653b2d1514f0F5fA5e31f6
+      #   - 0x45360d0C789Abac5B8C72B1558f5436E4C034E05
+
+# brownie default values made explicit
+dev_deployment_artifacts: true
+compiler:
+  evm_version: null
+  solc:
+    version: 0.8.2
+    optimizer:
+      enabled: true
+      runs: 200
+    # https://eth-brownie.readthedocs.io/en/stable/compile.html#compiler-settings
+    remappings:
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.7.3"
+      - "@chainlink=smartcontractkit/chainlink@2.10.0"
+      - "@etherisc/gif-interface=etherisc/gif-interface@3b0002a"
+
+# packages below will be added to brownie
+# you may use 'brownie pm list' after 'brownie compile'
+# to list the packages installed via the dependency list below
+dependencies:
+  # **Important**: If you update any version here, please also update them in .vscode/settings.json section 'solidity.remappingsUnix'
+  # github dependency format: <owner>/<repository>@<release>
+  - OpenZeppelin/openzeppelin-contracts@4.7.3
+  - smartcontractkit/chainlink@2.10.0
+  - etherisc/gif-interface@3b0002a
+
+# exclude open zeppeling contracts  when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+  exclude_contracts:
+    # chainlink
+    - ChainlinkClient
+    - Operator
+    # openzeppelin
+    - AccessControl
+    - AccessControlEnumerable
+    - Context
+    - Ownable
+    - EnumerableMap
+    - EnumerableSet
+    - ERC1967Proxy
+    - ERC20
+    - ERC721
+    - IERC20
+    - IERC721
+    - Initializable
+    - SafeERC20
+    - Strings
